@@ -27,13 +27,18 @@ router.get('/', async (req, res) => {
             'Content-Type': 'application/json' 
         }
     })
+    
     if(fetchJson.status === 200){
         const data = await fetchJson.json()
         if(keyword){
            const search = data.filter((trip) => searchEnging(keyword, trip))
+           console.log("search")
            res.json(search)
         }
-        res.json(data)
+        else{
+            res.json(data)
+        }
+        
     }
     res.status(fetchJson.status)
 })
