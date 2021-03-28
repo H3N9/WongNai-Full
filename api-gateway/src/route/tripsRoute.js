@@ -4,7 +4,7 @@ const fetch = require('node-fetch')
 
 
 const searchEnging = (target, trip) => {
-    const tagMatching = trip.tags.filter((value) => value.includes(target))
+    const tagMatching = trip.tags.filter((tag) => tag.includes(target)) // we must check with lower case.
     const title = trip.title.toLocaleLowerCase()
     const description = trip.description.toLocaleLowerCase()
     const toLowerOftarget = target.toLocaleLowerCase()
@@ -15,7 +15,10 @@ const searchEnging = (target, trip) => {
     ) {
         return trip
     }
-    return false
+    else{
+        return false
+    }
+    
 }
 
 router.get('/', async (req, res) => {
@@ -40,7 +43,10 @@ router.get('/', async (req, res) => {
         }
         
     }
-    res.status(fetchJson.status)
+    else{
+        res.status(fetchJson.status)
+    }
+    
 })
 
 module.exports = router
